@@ -1,0 +1,1399 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/guymorita/recommendationRaccoon#readme"
+
+    >raccoon (v0.2.8)</a>
+</h1>
+<h4>A Collaborative Filtering Recommendation Engine for Node.js utilizing Redis</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.raccoon">module raccoon</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">raccoon.</span>algorithms</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">raccoon.</span>input</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">raccoon.</span>stat</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.raccoon.algorithms">module raccoon.algorithms</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.algorithms.predictFor">
+            function <span class="apidocSignatureSpan">raccoon.algorithms.</span>predictFor
+            <span class="apidocSignatureSpan">(userId, itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.algorithms.similaritySum">
+            function <span class="apidocSignatureSpan">raccoon.algorithms.</span>similaritySum
+            <span class="apidocSignatureSpan">(simSet, compSet, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.algorithms.updateRecommendationsFor">
+            function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateRecommendationsFor
+            <span class="apidocSignatureSpan">(userId, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.algorithms.updateSimilarityFor">
+            function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateSimilarityFor
+            <span class="apidocSignatureSpan">(userId, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.algorithms.updateWilsonScore">
+            function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateWilsonScore
+            <span class="apidocSignatureSpan">(itemId, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.raccoon.input">module raccoon.input</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.input.disliked">
+            function <span class="apidocSignatureSpan">raccoon.input.</span>disliked
+            <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.input.liked">
+            function <span class="apidocSignatureSpan">raccoon.input.</span>liked
+            <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.input.undisliked">
+            function <span class="apidocSignatureSpan">raccoon.input.</span>undisliked
+            <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.input.unliked">
+            function <span class="apidocSignatureSpan">raccoon.input.</span>unliked
+            <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.input.updateSequence">
+            function <span class="apidocSignatureSpan">raccoon.input.</span>updateSequence
+            <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.raccoon.stat">module raccoon.stat</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.allDislikedFor">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>allDislikedFor
+            <span class="apidocSignatureSpan">(userId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.allLikedFor">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>allLikedFor
+            <span class="apidocSignatureSpan">(userId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.allWatchedFor">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>allWatchedFor
+            <span class="apidocSignatureSpan">(userId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.bestRated">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>bestRated
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.bestRatedWithScores">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>bestRatedWithScores
+            <span class="apidocSignatureSpan">(numOfRatings)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.dislikedBy">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>dislikedBy
+            <span class="apidocSignatureSpan">(itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.dislikedCount">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>dislikedCount
+            <span class="apidocSignatureSpan">(itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.leastSimilarUsers">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>leastSimilarUsers
+            <span class="apidocSignatureSpan">(userId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.likedBy">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>likedBy
+            <span class="apidocSignatureSpan">(itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.likedCount">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>likedCount
+            <span class="apidocSignatureSpan">(itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.mostDisliked">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>mostDisliked
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.mostLiked">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>mostLiked
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.mostSimilarUsers">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>mostSimilarUsers
+            <span class="apidocSignatureSpan">(userId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.recommendFor">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>recommendFor
+            <span class="apidocSignatureSpan">(userId, numberOfRecs)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.usersWhoLikedAlsoLiked">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>usersWhoLikedAlsoLiked
+            <span class="apidocSignatureSpan">(itemId)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raccoon.stat.worstRated">
+            function <span class="apidocSignatureSpan">raccoon.stat.</span>worstRated
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.raccoon" id="apidoc.module.raccoon">module raccoon</a></h1>
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.raccoon.algorithms" id="apidoc.module.raccoon.algorithms">module raccoon.algorithms</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.algorithms.predictFor" id="apidoc.element.raccoon.algorithms.predictFor">
+        function <span class="apidocSignatureSpan">raccoon.algorithms.</span>predictFor
+        <span class="apidocSignatureSpan">(userId, itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">predictFor = function (userId, itemId){
+  userId = String(userId);
+  itemId = String(itemId);
+  let finalSimilaritySum = 0.0;
+  let prediction = 0.0;
+  const similarityZSet = Key.similarityZSet(userId);
+  const likedBySet = Key.itemLikedBySet(itemId);
+  const dislikedBySet = Key.itemDislikedBySet(itemId);
+
+  return new Promise((resolve, reject) =&#x3e; {
+    exports.similaritySum(similarityZSet, likedBySet, function(result1){
+      exports.similaritySum(similarityZSet, dislikedBySet, function(result2){
+        finalSimilaritySum = result1 - result2;
+        client.scard(likedBySet, function(err, likedByCount){
+          client.scard(dislikedBySet, function(err, dislikedByCount){
+            prediction = finalSimilaritySum / parseFloat(likedByCount + dislikedByCount);
+            if (isFinite(prediction)){
+              resolve(prediction);
+            } else {
+              resolve(0.0);
+            }
+          });
+        });
+      });
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        client.sunionstore(setsToUnion, function(err) {
+// using the new array of all the items that were liked by people similar and disliked by people opposite, create a new set with
+ all the
+// items that the current user hasn&#x27;t already rated
+client.sdiff(tempAllLikedSet, Key.userLikedSet(userId), Key.userDislikedSet(userId), function(err, notYetRatedItems){
+  // with the array of items that user has not yet rated, iterate through all of them and predict what the current user would rate
+ it
+  async.each(notYetRatedItems,
+    function(itemId, callback){
+      exports.<span class="apidocCodeKeywordSpan">predictFor</span>(userId, itemId).then((score) =&#x3e; {
+        // push the score and item to the score map array.
+        scoreMap.push([score, itemId]);
+        callback();
+      });
+    },
+    // using score map which is an array of what the current user would rate all the unrated items,
+    // add them to that users sorted recommended set
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.algorithms.similaritySum" id="apidoc.element.raccoon.algorithms.similaritySum">
+        function <span class="apidocSignatureSpan">raccoon.algorithms.</span>similaritySum
+        <span class="apidocSignatureSpan">(simSet, compSet, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">similaritySum = function (simSet, compSet, cb){
+  let similarSum = 0.0;
+  client.smembers(compSet, function(err, userIds){
+    async.each(userIds,
+      function(userId, callback){
+        client.zscore(simSet, userId, function(err, zScore){
+          const newScore = parseFloat(zScore) || 0.0;
+          similarSum += newScore;
+          callback();
+        });
+      },
+      function(err){
+        cb(similarSum);
+      }
+    );
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+let finalSimilaritySum = 0.0;
+let prediction = 0.0;
+const similarityZSet = Key.similarityZSet(userId);
+const likedBySet = Key.itemLikedBySet(itemId);
+const dislikedBySet = Key.itemDislikedBySet(itemId);
+
+return new Promise((resolve, reject) =&#x3e; {
+  exports.<span class="apidocCodeKeywordSpan">similaritySum</span>(similarityZSet, likedBySet, function(result1){
+    exports.similaritySum(similarityZSet, dislikedBySet, function(result2){
+      finalSimilaritySum = result1 - result2;
+      client.scard(likedBySet, function(err, likedByCount){
+        client.scard(dislikedBySet, function(err, dislikedByCount){
+          prediction = finalSimilaritySum / parseFloat(likedByCount + dislikedByCount);
+          if (isFinite(prediction)){
+            resolve(prediction);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.algorithms.updateRecommendationsFor" id="apidoc.element.raccoon.algorithms.updateRecommendationsFor">
+        function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateRecommendationsFor
+        <span class="apidocSignatureSpan">(userId, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">updateRecommendationsFor = function (userId, cb){
+  // turning the user input into a string so it can be compared properly
+  userId = String(userId);
+  // creating two blank arrays
+  let setsToUnion = [];
+  let scoreMap = [];
+  // initializing the redis keys for temp sets, the similarity set and the recommended set
+  const tempAllLikedSet = Key.tempAllLikedSet(userId);
+  const similarityZSet = Key.similarityZSet(userId);
+  const recommendedZSet = Key.recommendedZSet(userId);
+  // returns an array of the users that are most similar within k nearest neighbors
+  client.zrevrange(similarityZSet, 0, config.nearestNeighbors-1, function(err, mostSimilarUserIds){
+    // returns an array of the users that are least simimilar within k nearest neighbors
+    client.zrange(similarityZSet, 0, config.nearestNeighbors-1, function(err, leastSimilarUserIds){
+      // iterate through the user ids to create the redis keys for all those users likes
+      _.each(mostSimilarUserIds, function(usrId, key){
+        setsToUnion.push(Key.userLikedSet(usrId));
+      });
+      // if you want to factor in the least similar least likes, you change this in config
+      // left it off because it was recommending items that every disliked universally
+      _.each(leastSimilarUserIds, function(usrId, key){
+        setsToUnion.push(Key.userDislikedSet(usrId));
+      });
+      // if there is at least one set in the array, continue
+      if (setsToUnion.length &#x3e; 0){
+        setsToUnion.unshift(tempAllLikedSet);
+        client.sunionstore(setsToUnion, function(err) {
+          // using the new array of all the items that were liked by people similar and disliked by people opposite, create a new
+ set with all the
+          // items that the current user hasn&#x27;t already rated
+          client.sdiff(tempAllLikedSet, Key.userLikedSet(userId), Key.userDislikedSet(userId), function(err, notYetRatedItems){
+            // with the array of items that user has not yet rated, iterate through all of them and predict what the current user
+ would rate it
+            async.each(notYetRatedItems,
+              function(itemId, callback){
+                exports.predictFor(userId, itemId).then((score) =&#x3e; {
+                  // push the score and item to the score map array.
+                  scoreMap.push([score, itemId]);
+                  callback();
+                });
+              },
+              // using score map which is an array of what the current user would rate all the unrated items,
+              // add them to that users sorted recommended set
+              function(err){
+                client.del(recommendedZSet, function(err){
+                  async.each(scoreMap,
+                    function(scorePair, callback){
+                      client.zadd(recommendedZSet, scorePair[0], scorePair[1], function(err){
+                        callback();
+                      });
+                    },
+                    // after all the additions have been made to the recommended set,
+                    function(err){
+                      client.del(tempAllLikedSet, function(err){
+                        client.zcard(recommendedZSet, function(err, length){
+                          client.zremrangebyrank(recommendedZSet, 0, length-config.numOfRecsStore-1, function(err){
+                            cb();
+                          });
+                        });
+                      });
+                    }
+                  );
+                });
+              }
+            );
+          });
+        });
+      } else {
+        cb();
+      }
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+async.parallel([
+  function(cb){
+    algo.updateWilsonScore(itemId, function(){
+      cb(null);
+    });
+  },
+  function(cb){
+    algo.<span class="apidocCodeKeywordSpan">updateRecommendationsFor</span>(userId, function(){
+      cb(null);
+    });
+  }
+],
+function(err){
+  if (err){console.log(&#x27;error&#x27;, err);}
+  resolve();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.algorithms.updateSimilarityFor" id="apidoc.element.raccoon.algorithms.updateSimilarityFor">
+        function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateSimilarityFor
+        <span class="apidocSignatureSpan">(userId, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">updateSimilarityFor = function (userId, cb){
+  // turning the userId into a string. depending on the db they might send an object, in which it won&#x27;t compare properly when comparing
+  // to other users
+  userId = String(userId);
+  // initializing variables
+  let userRatedItemIds, itemLiked, itemDisliked, itemLikeDislikeKeys;
+  // setting the redis key for the user&#x27;s similarity set
+  const similarityZSet = Key.similarityZSet(userId);
+  // creating a combined set with the all of a users likes and dislikes
+  client.sunion(Key.userLikedSet(userId), Key.userDislikedSet(userId), function(err, userRatedItemIds){
+    // if they have rated anything
+    if (userRatedItemIds.length &#x3e; 0){
+      // creating a list of redis keys to look up all of the likes and dislikes for a given set of items
+      itemLikeDislikeKeys = _.map(userRatedItemIds, function(itemId, key){
+        // key for that item being liked
+        itemLiked = Key.itemLikedBySet(itemId);
+        // key for the item being disliked
+        itemDisliked = Key.itemDislikedBySet(itemId);
+        // returning an array of those keys
+        return [itemLiked, itemDisliked];
+      });
+    }
+    // flattening the array of all the likes/dislikes for the items a user rated
+    itemLikeDislikeKeys = _.flatten(itemLikeDislikeKeys);
+    // builds one set of all the users who liked and disliked the same items
+    client.sunion(itemLikeDislikeKeys, function(err, otherUserIdsWhoRated){
+      // running in async parallel, going through the array of user ids who also rated the same things
+      async.each(otherUserIdsWhoRated,
+        // running a function on each item in the list
+        function(otherUserId, callback){
+          // if there is only one other user or the other user is the same user
+          if (otherUserIdsWhoRated.length === 1 || userId === otherUserId){
+            // then call the callback and exciting the similarity check
+            callback();
+          }
+          // if the userid is not the same as the user
+          if (userId !== otherUserId){
+            // calculate the jaccard coefficient for similarity. it will return a value between -1 and 1 showing the two users
+            // similarity
+            jaccardCoefficient(userId, otherUserId, function(result) {
+              // with the returned similarity score, add it to a sorted set named above
+              client.zadd(similarityZSet, result, otherUserId, function(err){
+                // call the async callback function once finished to indicate that the process is finished
+                callback();
+              });
+            });
+          }
+        },
+        // once all the async comparisons have been made, call the final callback based to the original function
+        function(err){
+          cb();
+        }
+      );
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+const updateSequence = function(userId, itemId, options = {}){
+let updateWilson = true;
+if (&#x27;updateWilson&#x27; in options) {
+  updateWilson = options.updateWilson ? true : false;
+}
+
+return new Promise((resolve, reject) =&#x3e; {
+  algo.<span class="apidocCodeKeywordSpan">updateSimilarityFor</span>(userId, function(){
+    async.parallel([
+      function(cb){
+        algo.updateWilsonScore(itemId, function(){
+          cb(null);
+        });
+      },
+      function(cb){
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.algorithms.updateWilsonScore" id="apidoc.element.raccoon.algorithms.updateWilsonScore">
+        function <span class="apidocSignatureSpan">raccoon.algorithms.</span>updateWilsonScore
+        <span class="apidocSignatureSpan">(itemId, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">updateWilsonScore = function (itemId, callback){
+  // creating the redis keys for scoreboard and to get the items liked and disliked sets
+  const scoreboard = Key.scoreboardZSet();
+  const likedBySet = Key.itemLikedBySet(itemId);
+  const dislikedBySet = Key.itemDislikedBySet(itemId);
+  // used for a confidence interval of 95%
+  const z = 1.96;
+  // initializing variables to calculate wilson score
+  let n, pOS, score;
+  // getting the liked count for the item
+  client.scard(likedBySet, function(err, likedResults){
+    // getting the disliked count for the item
+    client.scard(dislikedBySet, function(err, dislikedResults){
+      // if the total count is greater than zero
+      if ((likedResults + dislikedResults) &#x3e; 0){
+        // set n to the sum of the total ratings for the item
+        n = likedResults + dislikedResults;
+        // set pOS to the num of liked results divided by the number rated
+        // pOS represents the proportion of successes or likes in this case
+        pOS = likedResults / parseFloat(n);
+        // try the following equation
+        try {
+          // calculating the wilson score
+          // http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+          score = (pOS + z*z/(2*n) - z*Math.sqrt((pOS*(1-pOS)+z*z/(4*n))/n))/(1+z*z/n);
+        } catch (e) {
+          // if an error occurs, set the score to 0.0 and console log the error message.
+          console.log(e.name + &#x22;: &#x22; + e.message);
+          score = 0.0;
+        }
+        // add that score to the overall scoreboard. if that item already exists, the score will be updated.
+        client.zadd(scoreboard, score, itemId, function(err){
+          // call the final callback sent to the initial function.
+          callback();
+        });
+      }
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  updateWilson = options.updateWilson ? true : false;
+}
+
+return new Promise((resolve, reject) =&#x3e; {
+  algo.updateSimilarityFor(userId, function(){
+    async.parallel([
+      function(cb){
+        algo.<span class="apidocCodeKeywordSpan">updateWilsonScore</span>(itemId, function(){
+          cb(null);
+        });
+      },
+      function(cb){
+        algo.updateRecommendationsFor(userId, function(){
+          cb(null);
+        });
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.raccoon.input" id="apidoc.module.raccoon.input">module raccoon.input</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.input.disliked" id="apidoc.element.raccoon.input.disliked">
+        function <span class="apidocSignatureSpan">raccoon.input.</span>disliked
+        <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">disliked = function (userId, itemId, options = {}){
+  options.liked = false;
+  return changeRating(userId, itemId, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+raccoon.unliked(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+});
+// removes the liked rating from all sets and updates. not the same as disliked.
+```
+
+#### Dislikes:
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">disliked</span>(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+});
+// negative rating of the item. if user1 liked movie1 and user2 disliked it, their
+// jaccard would be -1 meaning the have opposite preferences.
+```
+
+``` js
+raccoon.undisliked(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.input.liked" id="apidoc.element.raccoon.input.liked">
+        function <span class="apidocSignatureSpan">raccoon.input.</span>liked
+        <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">liked = function (userId, itemId, options = {}){
+  options.liked = true;
+  return changeRating(userId, itemId, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+#### Require raccoon:
+``` js
+const raccoon = require(&#x27;raccoon&#x27;);
+```
+
+#### Add in ratings &#x26; Ask for recommendations:
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">liked</span>(&#x27;garyId&#x27;, &#x27;movieId&#x27;).then(() =&#x3e; {
+return raccoon.liked(&#x27;garyId&#x27;, &#x27;movie2Id&#x27;);
+}).then(() =&#x3e; {
+return raccoon.liked(&#x27;chrisId&#x27;, &#x27;movieId&#x27;);
+}).then(() =&#x3e; {
+return raccoon.recommendFor(&#x27;chrisId&#x27;, 10);
+}).then((recs) =&#x3e; {
+console.log(&#x27;recs&#x27;, recs);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.input.undisliked" id="apidoc.element.raccoon.input.undisliked">
+        function <span class="apidocSignatureSpan">raccoon.input.</span>undisliked
+        <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">undisliked = function (userId, itemId, options = {}){
+  options.liked = false;
+  options.removeRating = true;
+  return changeRating(userId, itemId, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+raccoon.disliked(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+});
+// negative rating of the item. if user1 liked movie1 and user2 disliked it, their
+// jaccard would be -1 meaning the have opposite preferences.
+```
+
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">undisliked</span>(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+});
+// similar to unliked. removes the negative disliked rating as if it was never rated.
+```
+
+### Recommendations
+
+``` js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.input.unliked" id="apidoc.element.raccoon.input.unliked">
+        function <span class="apidocSignatureSpan">raccoon.input.</span>unliked
+        <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unliked = function (userId, itemId, options = {}){
+  options.liked = true;
+  options.removeRating = true;
+  return changeRating(userId, itemId, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+// options are available to liked, disliked, unliked, and undisliked.
+
+```
+
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">unliked</span>(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+});
+// removes the liked rating from all sets and updates. not the same as disliked.
+```
+
+#### Dislikes:
+``` js
+raccoon.disliked(&#x27;userId&#x27;, &#x27;itemId&#x27;).then(() =&#x3e; {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.input.updateSequence" id="apidoc.element.raccoon.input.updateSequence">
+        function <span class="apidocSignatureSpan">raccoon.input.</span>updateSequence
+        <span class="apidocSignatureSpan">(userId, itemId, options = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">updateSequence = function (userId, itemId, options = {}){
+  let updateWilson = true;
+  if (&#x27;updateWilson&#x27; in options) {
+    updateWilson = options.updateWilson ? true : false;
+  }
+
+  return new Promise((resolve, reject) =&#x3e; {
+    algo.updateSimilarityFor(userId, function(){
+      async.parallel([
+        function(cb){
+          algo.updateWilsonScore(itemId, function(){
+            cb(null);
+          });
+        },
+        function(cb){
+          algo.updateRecommendationsFor(userId, function(){
+            cb(null);
+          });
+        }
+      ],
+      function(err){
+        if (err){console.log(&#x27;error&#x27;, err);}
+        resolve();
+      });
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.raccoon.stat" id="apidoc.module.raccoon.stat">module raccoon.stat</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.allDislikedFor" id="apidoc.element.raccoon.stat.allDislikedFor">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>allDislikedFor
+        <span class="apidocSignatureSpan">(userId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">allDislikedFor = function (userId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.smembersAsync(Key.userDislikedSet(userId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // same as likedCount but for disliked.
+});
+
+raccoon.allLikedFor(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has liked.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">allDislikedFor</span>(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has disliked.
+});
+
+raccoon.allWatchedFor(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has liked or disliked.
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.allLikedFor" id="apidoc.element.raccoon.stat.allLikedFor">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>allLikedFor
+        <span class="apidocSignatureSpan">(userId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">allLikedFor = function (userId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.smembersAsync(Key.userLikedSet(userId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // same as likedBy but for disliked.
+});
+
+raccoon.dislikedCount(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedCount but for disliked.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">allLikedFor</span>(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has liked.
+});
+
+raccoon.allDislikedFor(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has disliked.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.allWatchedFor" id="apidoc.element.raccoon.stat.allWatchedFor">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>allWatchedFor
+        <span class="apidocSignatureSpan">(userId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">allWatchedFor = function (userId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.sunionAsync(Key.userLikedSet(userId), Key.userDislikedSet(userId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // returns an array of all the items that user has liked.
+});
+
+raccoon.allDislikedFor(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has disliked.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">allWatchedFor</span>(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has liked or disliked.
+});
+```
+
+
+## Recommendation Engine Components
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.bestRated" id="apidoc.element.raccoon.stat.bestRated">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>bestRated
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bestRated = function (){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.scoreboardZSet(), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+```
+
+### User Statistics
+
+#### Ratings:
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">bestRated</span>().then((results) =&#x3e; {
+  // returns an array of the &#x27;scoreboard&#x27; sorted set which represents the global
+  // ranking of items based on the Wilson Score Interval. in short it represents the
+  // &#x27;best rated&#x27; items based on the ratio of likes/dislikes and cuts out outliers.
+  // ex. results = [&#x27;iceageId&#x27;, &#x27;sleeplessInSeattleId&#x27;, &#x27;theDarkKnightId&#x27;]
+});
+
+raccoon.worstRated().then((results) =&#x3e; {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.bestRatedWithScores" id="apidoc.element.raccoon.stat.bestRatedWithScores">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>bestRatedWithScores
+        <span class="apidocSignatureSpan">(numOfRatings)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bestRatedWithScores = function (numOfRatings){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.scoreboardZSet(), 0, numOfRatings, &#x27;withscores&#x27;).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.dislikedBy" id="apidoc.element.raccoon.stat.dislikedBy">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>dislikedBy
+        <span class="apidocSignatureSpan">(itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">dislikedBy = function (itemId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.smembersAsync(Key.itemDislikedBySet(itemId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // returns an array which lists all the users who liked that item.
+});
+
+raccoon.likedCount(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns the number of users who have liked that item.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">dislikedBy</span>(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedBy but for disliked.
+});
+
+raccoon.dislikedCount(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedCount but for disliked.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.dislikedCount" id="apidoc.element.raccoon.stat.dislikedCount">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>dislikedCount
+        <span class="apidocSignatureSpan">(itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">dislikedCount = function (itemId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.scardAsync(Key.itemDislikedBySet(itemId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // returns the number of users who have liked that item.
+});
+
+raccoon.dislikedBy(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedBy but for disliked.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">dislikedCount</span>(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedCount but for disliked.
+});
+
+raccoon.allLikedFor(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of all the items that user has liked.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.leastSimilarUsers" id="apidoc.element.raccoon.stat.leastSimilarUsers">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>leastSimilarUsers
+        <span class="apidocSignatureSpan">(userId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">leastSimilarUsers = function (userId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrangeAsync(Key.similarityZSet(userId), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // returns an array of the &#x27;similarityZSet&#x27; ranked sorted set for the user which
+  // represents their ranked similarity to all other users given the
+  // Jaccard Coefficient. the value is between -1 and 1. -1 means that the
+  // user is the exact opposite, 1 means they&#x27;re exactly the same.
+  // ex. results = [&#x27;garyId&#x27;, &#x27;andrewId&#x27;, &#x27;jakeId&#x27;]
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">leastSimilarUsers</span>(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // same as mostSimilarUsers but the opposite.
+  // ex. results = [&#x27;timId&#x27;, &#x27;haoId&#x27;, &#x27;phillipId&#x27;]
+});
+```
+
+### User Statistics
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.likedBy" id="apidoc.element.raccoon.stat.likedBy">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>likedBy
+        <span class="apidocSignatureSpan">(itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">likedBy = function (itemId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.smembersAsync(Key.itemLikedBySet(itemId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // number of likes for all the items. does not factor in dislikes.
+});
+
+raccoon.mostDisliked().then((results) =&#x3e; {
+  // same as mostLiked but the opposite.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">likedBy</span>(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns an array which lists all the users who liked that item.
+});
+
+raccoon.likedCount(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns the number of users who have liked that item.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.likedCount" id="apidoc.element.raccoon.stat.likedCount">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>likedCount
+        <span class="apidocSignatureSpan">(itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">likedCount = function (itemId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.scardAsync(Key.itemLikedBySet(itemId)).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // same as mostLiked but the opposite.
+});
+
+raccoon.likedBy(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns an array which lists all the users who liked that item.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">likedCount</span>(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns the number of users who have liked that item.
+});
+
+raccoon.dislikedBy(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // same as likedBy but for disliked.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.mostDisliked" id="apidoc.element.raccoon.stat.mostDisliked">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>mostDisliked
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">mostDisliked = function (){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.mostDisliked(), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+#### Liked/Disliked lists and counts:
+``` js
+raccoon.mostLiked().then((results) =&#x3e; {
+  // returns an array of the &#x27;mostLiked&#x27; sorted set which represents the global
+  // number of likes for all the items. does not factor in dislikes.
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">mostDisliked</span>().then((results) =&#x3e; {
+  // same as mostLiked but the opposite.
+});
+
+raccoon.likedBy(&#x27;itemId&#x27;).then((results) =&#x3e; {
+  // returns an array which lists all the users who liked that item.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.mostLiked" id="apidoc.element.raccoon.stat.mostLiked">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>mostLiked
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">mostLiked = function (){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.mostLiked(), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+raccoon.worstRated().then((results) =&#x3e; {
+  // same as bestRated but in reverse.
+});
+```
+
+#### Liked/Disliked lists and counts:
+``` js
+raccoon.<span class="apidocCodeKeywordSpan">mostLiked</span>().then((results) =&#x3e; {
+  // returns an array of the &#x27;mostLiked&#x27; sorted set which represents the global
+  // number of likes for all the items. does not factor in dislikes.
+});
+
+raccoon.mostDisliked().then((results) =&#x3e; {
+  // same as mostLiked but the opposite.
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.mostSimilarUsers" id="apidoc.element.raccoon.stat.mostSimilarUsers">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>mostSimilarUsers
+        <span class="apidocSignatureSpan">(userId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">mostSimilarUsers = function (userId){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.similarityZSet(userId), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // numberOfRecs is the number of recommendations you want to receive.
+  // asking for recommendations queries the &#x27;recommendedZSet&#x27; sorted set for the user.
+  // the movies in this set were calculated in advance when the user last rated
+  // something.
+  // ex. results = [&#x27;batmanId&#x27;, &#x27;supermanId&#x27;, &#x27;chipmunksId&#x27;]
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">mostSimilarUsers</span>(&#x27;userId&#x27;).then((results) =&#x3e; {
+  // returns an array of the &#x27;similarityZSet&#x27; ranked sorted set for the user which
+  // represents their ranked similarity to all other users given the
+  // Jaccard Coefficient. the value is between -1 and 1. -1 means that the
+  // user is the exact opposite, 1 means they&#x27;re exactly the same.
+  // ex. results = [&#x27;garyId&#x27;, &#x27;andrewId&#x27;, &#x27;jakeId&#x27;]
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.recommendFor" id="apidoc.element.raccoon.stat.recommendFor">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>recommendFor
+        <span class="apidocSignatureSpan">(userId, numberOfRecs)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">recommendFor = function (userId, numberOfRecs){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrevrangeAsync(Key.recommendedZSet(userId), 0, numberOfRecs).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+#### Add in ratings &#x26; Ask for recommendations:
+``` js
+raccoon.liked(&#x27;garyId&#x27;, &#x27;movieId&#x27;).then(() =&#x3e; {
+  return raccoon.liked(&#x27;garyId&#x27;, &#x27;movie2Id&#x27;);
+}).then(() =&#x3e; {
+  return raccoon.liked(&#x27;chrisId&#x27;, &#x27;movieId&#x27;);
+}).then(() =&#x3e; {
+  return raccoon.<span class="apidocCodeKeywordSpan">recommendFor</span>(&#x27;chrisId&#x27;, 10);
+}).then((recs) =&#x3e; {
+  console.log(&#x27;recs&#x27;, recs);
+  // results will be an array of x ranked recommendations for chris
+  // in this case it would contain movie2
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.usersWhoLikedAlsoLiked" id="apidoc.element.raccoon.stat.usersWhoLikedAlsoLiked">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>usersWhoLikedAlsoLiked
+        <span class="apidocSignatureSpan">(itemId)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">usersWhoLikedAlsoLiked = function (itemId){
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.raccoon.stat.worstRated" id="apidoc.element.raccoon.stat.worstRated">
+        function <span class="apidocSignatureSpan">raccoon.stat.</span>worstRated
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">worstRated = function (){
+  return new Promise((resolve, reject) =&#x3e; {
+    client.zrangeAsync(Key.scoreboardZSet(), 0, -1).then((results) =&#x3e; {
+      resolve(results);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+raccoon.bestRated().then((results) =&#x3e; {
+  // returns an array of the &#x27;scoreboard&#x27; sorted set which represents the global
+  // ranking of items based on the Wilson Score Interval. in short it represents the
+  // &#x27;best rated&#x27; items based on the ratio of likes/dislikes and cuts out outliers.
+  // ex. results = [&#x27;iceageId&#x27;, &#x27;sleeplessInSeattleId&#x27;, &#x27;theDarkKnightId&#x27;]
+});
+
+raccoon.<span class="apidocCodeKeywordSpan">worstRated</span>().then((results) =&#x3e; {
+  // same as bestRated but in reverse.
+});
+```
+
+#### Liked/Disliked lists and counts:
+``` js
+raccoon.mostLiked().then((results) =&#x3e; {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
